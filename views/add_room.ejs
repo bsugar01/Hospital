@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Room</title>
+  <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/assets/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+  <div class="main-wrapper">
+    <!-- Header -->
+    <div class="header">
+      <div class="header-left">
+        <a href="/home" class="logo" style="font-size: 20px; font-weight: bold; color:white;">CityCare</a>
+      </div>
+      <a id="toggle_btn" href="#"><i class="fa fa-bars"></i></a>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+      <div class="sidebar-inner slimscroll">
+        <div id="sidebar-menu" class="sidebar-menu">
+          <ul>
+            <li class="menu-title">Main</li>
+            <li><a href="/home"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+            <li><a href="/patients"><i class="fa fa-user-md"></i> <span>Patients</span></a></li>
+            <li><a href="/appointment"><i class="fa fa-calendar"></i> <span>Appointments</span></a></li>
+            <li class="active"><a href="/rooms"><i class="fa fa-bed"></i> <span>Rooms</span></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Page Wrapper -->
+    <div class="page-wrapper">
+      <div class="content">
+        <div class="row">
+          <div class="col-sm-12">
+            <h4 class="page-title">Add New Room</h4>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-8 offset-md-2">
+            <form method="POST" action="/rooms/add">
+              <div class="form-group">
+                <label>Room Number</label>
+                <input type="text" name="room_number" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <label>Status</label>
+                <select name="status" class="form-control" required>
+                  <option value="vacant">Vacant</option>
+                  <option value="occupied">Occupied</option>
+                  <option value="isolation">Isolation</option>
+                </select>
+              </div>
+              <div class="text-end mt-3">
+                <button type="submit" class="btn btn-primary">Add Room</button>
+                <a href="/rooms" class="btn btn-secondary">Cancel</a>
+              </div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="/assets/js/jquery-3.2.1.min.js"></script>
+  <script src="/assets/js/bootstrap.min.js"></script>
+  <script src="/assets/js/app.js"></script>
+</body>
+</html>

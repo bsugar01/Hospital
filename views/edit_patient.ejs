@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+  <link rel="shortcut icon" href="/assets/img/favicon.ico">
+  <title>Edit Patient</title>
+  <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/assets/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+  <div class="main-wrapper">
+
+    <!-- Header -->
+    <div class="header">
+      <div class="header-left">
+        <a href="/home" class="logo">
+          <img src="/assets/img/logo.png" width="35" height="35" alt=""> <span>Preclinic</span>
+        </a>
+      </div>
+      <a id="toggle_btn" href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+      <a id="mobile_btn" class="mobile_btn float-left" href="#sidebar"><i class="fa fa-bars"></i></a>
+      <ul class="nav user-menu float-right">
+        <li class="nav-item dropdown has-arrow">
+          <a href="#" class="dropdown-toggle nav-link user-link" data-toggle="dropdown">
+            <span class="user-img">
+              <img class="rounded-circle" src="/assets/img/user.jpg" width="24" alt="Admin">
+              <span class="status online"></span>
+            </span>
+            <span>Admin</span>
+          </a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="/home/profile">My Profile</a>
+            <a class="dropdown-item" href="/home/edit-profile">Edit Profile</a>
+            <a class="dropdown-item" href="/logout">Logout</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+      <div class="sidebar-inner slimscroll">
+        <div id="sidebar-menu" class="sidebar-menu">
+          <ul>
+            <li class="menu-title">Main</li>
+            <li><a href="/home"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+            <li><a href="/patients"><i class="fa fa-user-md"></i> <span>Patients</span></a></li>
+            <li><a href="/appointment"><i class="fa fa-calendar"></i> <span>Appointments</span></a></li>
+            <li><a href="/rooms"><i class="fa fa-bed"></i> <span>Rooms</span></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Page Wrapper -->
+    <div class="page-wrapper">
+      <div class="content">
+        <div class="row">
+          <div class="col-sm-12">
+            <h4 class="page-title">Edit Patient</h4>
+          </div>
+        </div>
+
+        <form method="POST" action="/patients/edit/<%= patient.id %>">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" name="name" value="<%= patient.name %>" class="form-control" required>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Email</label>
+                <input type="email" name="email" value="<%= patient.email %>" class="form-control" required>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Gender</label>
+                <select name="gender" class="form-control">
+                  <option value="male" <%= patient.gender === 'male' ? 'selected' : '' %>>Male</option>
+                  <option value="female" <%= patient.gender === 'female' ? 'selected' : '' %>>Female</option>
+                  <option value="other" <%= patient.gender === 'other' ? 'selected' : '' %>>Other</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Age</label>
+                <input type="number" name="age" value="<%= patient.age %>" class="form-control" required>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Phone</label>
+                <input type="text" name="phone" value="<%= patient.phone %>" class="form-control" required>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Room Number</label>
+                <input type="text" name="roomNumber" value="<%= patient.roomnumber %>" class="form-control">
+              </div>
+            </div>
+
+            <div class="col-md-12">
+              <label>Symptoms</label><br>
+              <% const selectedSymptoms = patient.symptoms ? patient.symptoms.split(', ') : []; %>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="symptoms" value="fever" <%= selectedSymptoms.includes('fever') ? 'checked' : '' %>> Fever
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="symptoms" value="cough" <%= selectedSymptoms.includes('cough') ? 'checked' : '' %>> Cough
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="symptoms" value="breathlessness" <%= selectedSymptoms.includes('breathlessness') ? 'checked' : '' %>> Breathlessness
+              </div>
+            </div>
+
+            <div class="col-md-12 mt-4">
+              <button type="submit" class="btn btn-primary">Update Patient</button>
+              <a href="/patients" class="btn btn-secondary">Cancel</a>
+            </div>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="sidebar-overlay" data-reff=""></div>
+  <script src="/assets/js/jquery-3.2.1.min.js"></script>
+  <script src="/assets/js/popper.min.js"></script>
+  <script src="/assets/js/bootstrap.min.js"></script>
+  <script src="/assets/js/jquery.slimscroll.js"></script>
+  <script src="/assets/js/app.js"></script>
+</body>
+</html>

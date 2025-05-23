@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Room</title>
+  <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container mt-5">
+    <h3>Edit Room</h3>
+    <form action="/rooms/edit/<%= room.id %>" method="POST" class="mt-4">
+      <div class="mb-3">
+        <label class="form-label">Room Number</label>
+        <input type="text" name="room_number" class="form-control" value="<%= room.room_number %>" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Status</label>
+        <select name="status" class="form-select">
+          <option value="vacant" <%= room.status === 'vacant' ? 'selected' : '' %>>Vacant</option>
+          <option value="occupied" <%= room.status === 'occupied' ? 'selected' : '' %>>Occupied</option>
+          <option value="isolation" <%= room.status === 'isolation' ? 'selected' : '' %>>Isolation</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary">Update Room</button>
+      <a href="/rooms" class="btn btn-secondary">Cancel</a>
+    </form>
+  </div>
+</body>
+</html>
